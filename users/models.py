@@ -20,8 +20,14 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance=None, **kwargs):
     if instance and kwargs.get('created', False):
         confirm_code = generate_code(20)
+        MAX_TRIED_TIMES = 3
+        count = 0
         while UserProfile.objects.filter(confirm_code=confirm_code).exists():
             logger.warning('Confirm-code exists in database: %s' % confirm_code)
+            count += 1
+            if count >= MAX_TRIED_TIMES:
+                log.error('Tried %d times to generate code. Give up.' % MAX_TRIED_TIMES)
+                raise Error('Code generated exists and are always the same!')
             confirm_code = generate_code(20)
         profile = UserProfile(user=instance, confirm_code=confirm_code)
         profile.save()
