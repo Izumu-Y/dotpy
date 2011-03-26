@@ -87,10 +87,8 @@ def signout(request):
 
 def _generate_username():
     num = 1000
-    print 'num: %d' % num
     while get_or_none(User, username=str(num)):
         num = num + 1
-        print 'num: %d' % num
     return str(num)
 
 def signup(request):
