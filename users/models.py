@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete
 from django.contrib.auth.models import User
 
 from dotpy.core.utils import generate_code
@@ -23,13 +23,19 @@ def create_user_profile(sender, instance=None, **kwargs):
         MAX_TRIED_TIMES = 3
         count = 0
         while UserProfile.objects.filter(confirm_code=confirm_code).exists():
-            logger.warning('Confirm-code exists in database: %s' % confirm_code)
+            logger.info('Confirm-code exists in database: %s' % confirm_code)
             count += 1
             if count >= MAX_TRIED_TIMES:
                 log.error('Tried %d times to generate code. Give up.' % MAX_TRIED_TIMES)
-                raise Error('Code generated exists and are always the same!')
+                raise Exception('Code generated exists and are always the same!')
             confirm_code = generate_code(20)
         profile = UserProfile(user=instance, confirm_code=confirm_code)
         profile.save()
 
-post_save.connect(create_user_profile, sender=User)
+def delete_user_profile(sender, instance=None, **kwargs):
+    if instance:
+        profile = instance.get_profile()
+        profile.delete()
+
+post_save.connect(create_user_profile, sender=User, dispatch_uid='dotpy.users.modes.UserProfile')
+pre_delete.connect(delete_user_profile, sender=User, dispatch_uid='dotpy.users.modes.UserProfile')
