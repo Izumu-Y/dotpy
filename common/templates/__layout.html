@@ -4,6 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" /> 
     <title>{% block title %}dotPy{% endblock %}</title> 
+    <link rel="stylesheet" href="{{ STATIC_URL }}blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ STATIC_URL }}blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="{{ STATIC_URL }}blueprint/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}google-code-prettify/sunburst.css" />
     <script type="text/javascript" src="{{ STATIC_URL }}google-code-prettify/prettify.js"></script>
@@ -11,6 +17,18 @@
     {% include '_google-analytics.html' %}
 </head>
 <body onload="prettyPrint()">
-    {% block body %}{% endblock %}
+    <div id="container" class="container">
+        <div id="header" class="span-24">
+            dotPy
+        </div>
+
+        <div id="body" class="span-24">
+            {% block body %}{% endblock %}
+        </div>
+
+        <div id="footer" class="span-24">
+            <a href="#container">TOP</a>
+        </div>
+    </div>
 </body>
 </html>
