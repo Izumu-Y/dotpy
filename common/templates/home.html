@@ -1,14 +1,53 @@
 {% extends '__layout.html' %}
 
 {% block body %}
-<strong>Welcome to dotPy - a community for programmers</strong>
-<p>大家好啊！</p>
-<pre class="prettyprint">
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+<div class="span-24">
+    <div class="span-12 status-box">
+        <div class="span-12 status-navigator">
+            <span>hot notes</span>
+            <a>latest notes</a>
+            <a>all notes</a>
+        </div>
+        <hr/>
+        <div class="span-12">
+            <ul>
+                <li><a>emily</a> | <a>dotPy development status...</a></li>
+                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx...</a></li>
+                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx...</a></li>
+                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx</a></li>
+                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx</a></li>
+                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx</a></li>
+                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="span-12 last status-box">
+        <div class="span-12 status-navigator">
+            <span>hot projects</span>
+            <a>latest projects</a>
+            <a>all projects</a>
+        </div>
+        <hr/>
+        <div class="span-12">
+            <ul>
+                <li><a>dotPy</a> | dotPy is home of coders :)</li>
+                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
+                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
+                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
+                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
+                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
+                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-def home(request):
-    """The home page."""
-    return render_to_response('home.html', context_instance=RequestContext(request))
-</pre>
+<div class="span-24">
+    <div class="span-12">
+        <input type="text" size="40" value="search notes..."/>
+    </div>
+    <div class="span-12 last">
+        <input type="text" size="40" value="search projects..."/>
+    </div>
+</div>
 {% endblock %}

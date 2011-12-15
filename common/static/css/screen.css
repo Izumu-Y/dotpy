@@ -1,4 +1,13 @@
 body {font-size:90%;}
 a {text-decoration:none;}
-#header {text-align:right;font-size:200%;}
-#footer {text-align:center;}
+
+#header {margin:20px 0;}
+#navigator-links a {margin-right:30px;}
+#logo {text-align:right;font-size:200%;}
+#footer {text-align:right;margin-top:20px;}
+
+.status-box ul {padding-left:0;margin:0 0 10px 0;}
+.status-box li {list-style:none;}
+.status-box hr {margin-bottom:10px;}
+.status-navigator {margin-bottom:10px;}
+.status-navigator span, .status-navigator a {margin-right:15px;}

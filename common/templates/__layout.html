@@ -4,7 +4,7 @@
 <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" /> 
-    <title>{% block title %}dotPy{% endblock %}</title> 
+    <title>{% block title %}dotPy - home of coders{% endblock %}</title>
     <link rel="stylesheet" href="{{ STATIC_URL }}blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="{{ STATIC_URL }}blueprint/print.css" type="text/css" media="print">
@@ -21,7 +21,13 @@
 <body onload="prettyPrint()">
     <div id="container" class="container">
         <div id="header" class="span-24">
-            dotPy
+            <div id="navigator-links" class="span-8">
+                <a href="#">{% trans 'common.login' %}</a>
+                <a href="#">{% trans 'common.register' %}</a>
+            </div>
+            <div id="logo" class="prepend-8 span-8 last">
+                dotPy
+            </div>
         </div>
 
         <div id="body" class="span-24">
