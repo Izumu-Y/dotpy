@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}blueprint/ie.css" type="text/css" media="screen, projection">
     <![endif]-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}google-code-prettify/sunburst.css" />
     <script type="text/javascript" src="{{ STATIC_URL }}google-code-prettify/prettify.js"></script>
     {% block extra_head %}{% endblock %}
@@ -27,7 +29,7 @@
         </div>
 
         <div id="footer" class="span-24">
-            <a href="#container">TOP</a>
+            <a href="#" onclick="$(window).scrollTop(0);return !1;" title="">=> {% trans 'common.top' %}</a>
         </div>
     </div>
 </body>
