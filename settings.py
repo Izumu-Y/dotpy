@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 
     'dotpy.common',
+    'dotpy.notes',
 )
 
 # A sample logging configuration. The only tangible logging
