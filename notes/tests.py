@@ -22,4 +22,4 @@ class NoteTest(TestCase):
         self.assertEqual(note.__unicode__(), note.content[:27] + '...')
 
     def test_notes(self):
-        self.assertEqual(Note.objects.count(), 2)
+        self.assertEqual(Note.all_objects.count(), 2)

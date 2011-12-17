@@ -11,13 +11,11 @@
         <hr/>
         <div class="span-12">
             <ul>
-                <li><a>emily</a> | <a>dotPy development status...</a></li>
-                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx...</a></li>
-                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx...</a></li>
-                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx</a></li>
-                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx</a></li>
-                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx</a></li>
-                <li><a>xxx</a> | <a>xxx xxx xxx xxx xxx xxx xxx xxx</a></li>
+            {% for note in hot_notes %}
+                <li><a>{{ note.owner.username }}</a> | <a>{{ note }}</a></li>
+            {% empty %}
+                <li>No notes yet.</li>
+            {% endfor %}
             </ul>
         </div>
     </div>
