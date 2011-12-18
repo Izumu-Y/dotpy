@@ -28,3 +28,7 @@ class Note(models.Model):
             return self.content
         else:
             return self.content[:27] + '...'
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('note', [str(self.id)])

@@ -1,0 +1,13 @@
+{% extends '__layout.html' %}
+
+{% block body %}
+<div class="span-24">
+    <div class="prepend-6 span-12 append-6">
+        {% for user in users %}
+        <div>
+            <a href="{{ user.get_absolute_url }}">{{ user }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

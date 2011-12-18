@@ -2,7 +2,7 @@
 
 from django.test import TestCase
 
-from notes.models import Note
+from dotpy.notes.models import Note
 
 class NoteTest(TestCase):
     fixtures = ['notes_dev']
