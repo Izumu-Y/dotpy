@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.html import escape
 
 class Tag(models.Model):
     name = models.CharField(max_length=30, unique=True)
@@ -32,3 +33,8 @@ class Note(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('note', [str(self.id)])
+
+    def get_content_html(self):
+        # TODO Support 2 modes: plain text and rStructuredText
+        # Also supports code snippets (syntax highlignting)
+        return escape(self.content)

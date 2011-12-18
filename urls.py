@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^users/([\w.-]{1,30})/$', 'dotpy.common.views.user', name='user'),
 
     url(r'^notes/', include('dotpy.notes.urls')),
+    url(r'^projects/', include('dotpy.projects.urls')),
 
     # url(r'^dotpy/', include('dotpy.foo.urls')),
 

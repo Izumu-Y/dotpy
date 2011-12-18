@@ -127,6 +127,7 @@ INSTALLED_APPS = (
 
     'dotpy.common',
     'dotpy.notes',
+    'dotpy.projects',
 )
 
 # A sample logging configuration. The only tangible logging

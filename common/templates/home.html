@@ -28,13 +28,11 @@
         <hr/>
         <div class="span-12">
             <ul>
-                <li><a>dotPy</a> | dotPy is home of coders :)</li>
-                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
-                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
-                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
-                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
-                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
-                <li><a>xxx xxx xxx xxx xxx</a> | xxx xxx xxx xxx xxx xxx xxx xxx...</li>
+                {% for project in hot_projects %}
+                <li><a href="{{ project.get_absolute_url }}">{{ project.name }}</a> | {{ project.get_description_str }}</li>
+                {% empty %}
+                <li>No projects yet.</li>
+                {% endfor %}
             </ul>
         </div>
     </div>
