@@ -23,3 +23,12 @@ class NoteTest(TestCase):
 
     def test_notes(self):
         self.assertEqual(Note.all_objects.count(), 2)
+
+    def test_generate_html_content(self):
+        # plain text
+        self.assertEqual(Note.generate_html_content("", 'plain'), "")
+        self.assertEqual(Note.generate_html_content(" ", 'plain'), "&nbsp;")
+        self.assertEqual(Note.generate_html_content("<script>", 'plain'), "&lt;script&gt;")
+        # reStructuredText
+        self.assertEqual(Note.generate_html_content("", 'rst'), "")
+        self.assertEqual(Note.generate_html_content("<script>", 'rst'), "&lt;script&gt;")
