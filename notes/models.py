@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.html import escape
+from django.utils.html import escape, strip_tags
 from django.utils.translation import ugettext as _
+
+from docutils.core import publish_parts
+import re
 
 class Tag(models.Model):
     name = models.CharField(max_length=30, unique=True)
@@ -32,25 +35,48 @@ class Note(models.Model):
     public_objects = PublicNoteManager()
 
     def __unicode__(self):
-        if len(self.content) <= 30:
-            return self.content
+        result = strip_tags(self.html_content)
+        if len(result) <= 30:
+            return result
         else:
-            return self.content[:27] + '...'
+            return result[:27] + '...'
 
     @models.permalink
     def get_absolute_url(self):
         return ('note', [str(self.id)])
 
     def save(self, *args, **kwargs):
-        self.html_content = Note.generate_html_content(self.content, self.syntax)
+        self.generate_html_content()
         super(Note, self).save(*args, **kwargs)
 
     @staticmethod
-    def generate_html_content(raw_content, syntax):
-        # TODO process code syntax highlighting
-        if syntax == 'rst':
-            # TODO process rst
-            return escape(raw_content)
+    def _parse_plain(raw_content):
+        if not raw_content:
+            return ""
+        lines = []
+        in_code = False
+        for line in raw_content.split("\n"):
+            if in_code:
+                m = re.match(r'\}\}\}$', line)
+                if m:
+                    lines.append('</pre>')
+                    in_code = False
+                else:
+                    lines.append(escape(line))
+                    lines.append("\n")
+            else:
+                m = re.match(r'\{\{\{$', line)
+                if m:
+                    in_code = True
+                    lines.append('<pre class="prettyprint">')
+                else:
+                    lines.append(escape(line).replace("\n", "<br/>").replace(" ", "&nbsp;").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;"))
+        return "".join(lines)
+
+    def generate_html_content(self):
+        if self.syntax == 'rst':
+            # TODO process code syntax highlighting
+            self.html_content = publish_parts(self.content, writer_name='html')['body']
         else:
             # plain text (or other unexpected syntax)
-            return escape(raw_content).replace("\n", "<br/>").replace(" ", "&nbsp;").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
+            self.html_content = Note._parse_plain(self.content)
