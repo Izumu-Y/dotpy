@@ -156,8 +156,8 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
+            'handlers': ['console'],
+            'level': 'CRITICAL',
             'propagate': True,
         },
         'dotpy': {
