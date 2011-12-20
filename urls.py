@@ -6,11 +6,12 @@ from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'dotpy.common.views.home', name='home'),
-    url(r'^users/$', 'dotpy.common.views.users', name='users'),
-    url(r'^users/([\w.-]{1,30})/$', 'dotpy.common.views.user', name='user'),
 
-    url(r'^notes/', include('dotpy.notes.urls')),
-    url(r'^projects/', include('dotpy.projects.urls')),
+    url(r'^u/$', 'dotpy.common.views.users', name='users'),
+    url(r'^(?P<username>[\w.-]{3,30})/', include('dotpy.common.urls')),
+
+    url(r'^n/', include('dotpy.notes.urls')),
+    url(r'^p/', include('dotpy.projects.urls')),
 
     # url(r'^dotpy/', include('dotpy.foo.urls')),
 

@@ -7,7 +7,7 @@ from dotpy.projects.models import Project
 
 def home(request):
     """The home page."""
-    hot_notes = Note.public_objects.order_by('-votes')[:7]
+    hot_notes = Note.public_objects.order_by('-votes', '-created_at')[:7]
     hot_projects = Project.objects.order_by('-votes')[:7]
     return render_to_response('home.html',
             dict(hot_notes=hot_notes, hot_projects=hot_projects),

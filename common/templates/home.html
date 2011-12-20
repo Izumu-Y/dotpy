@@ -12,7 +12,7 @@
         <div class="span-12">
             <ul>
                 {% for note in hot_notes %}
-                <li><a href="{{ note.owner.get_absolute_url }}">{{ note.owner.username }}</a> | <a href="{{ note.get_absolute_url }}">{{ note }}</a></li>
+                <li><a href="{% url user note.owner.username %}">{{ note.owner.username }}</a> | <a href="{{ note.get_absolute_url }}">{{ note }}</a></li>
                 {% empty %}
                 <li>No notes yet.</li>
                 {% endfor %}
