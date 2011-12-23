@@ -70,7 +70,7 @@ class Note(models.Model):
                     in_code = True
                     lines.append('<pre class="prettyprint">')
                 else:
-                    lines.append(escape(line).replace("\n", "<br/>").replace(" ", "&nbsp;").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;"))
+                    lines.append(escape(line).replace("\n", "<br/>"))
         return "".join(lines)
 
     def generate_html_content(self):

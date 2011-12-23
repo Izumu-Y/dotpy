@@ -39,7 +39,7 @@ class NoteTest(TestCase):
             return note.html_content
         # plain text
         self.assertEqual(_result("", 'plain'), "")
-        self.assertEqual(_result(" ", 'plain'), "&nbsp;")
+        self.assertEqual(_result(" ", 'plain'), " ")
         self.assertEqual(_result("<script>", 'plain'), "&lt;script&gt;")
         self.assertEqual(_result("""{{{
 print 'Hello'
