@@ -173,6 +173,8 @@ LOGGING = {
 EMAIL_FROM = 'support@dotppy.org'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+AUTH_PROFILE_MODULE = 'common.UserProfile'
+
 try:
     from local_settings import *
 except ImportError:
